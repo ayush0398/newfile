@@ -10,7 +10,7 @@ import argparse
 import os
 import math
 import threading
-import pyttsx3
+#import pyttsx3
 import time
 
 
@@ -155,16 +155,16 @@ def run_speech(speech, speech_message):
     speech.say(speech_message)
     speech.runAndWait()
 
-def play_sound_for_sign(speech, sign_name, cooldown_duration, last_detection_time):
-    current_time = time.time()
-    if current_time - last_detection_time > cooldown_duration:
-        message = f"Detected sign: {sign_name}"
-        p = threading.Thread(target=run_speech, args=(speech, message))
-        p.start()
-        last_detection_time = current_time  # Update the last detection time
-    return last_detection_time
+#def play_sound_for_sign(speech, sign_name, cooldown_duration, last_detection_time):
+#    current_time = time.time()
+#    if current_time - last_detection_time > cooldown_duration:
+#        message = f"Detected sign: {sign_name}"
+#        p = threading.Thread(target=run_speech, args=(speech, message))
+#        p.start()
+#        last_detection_time = current_time  # Update the last detection time
+#    return last_detection_time
 
-speech = pyttsx3.init()
+#speech = pyttsx3.init()
 
 
 SIGNS = ["ERROR",
@@ -536,7 +536,7 @@ def main(args):
         if current_sign:
             sign_count += 1
             coordinates.append(position)
-            last_detection_time = play_sound_for_sign(speech, current_text, cooldown_duration, last_detection_time)
+            #last_detection_time = play_sound_for_sign(speech, current_text, cooldown_duration, last_detection_time)
         combined_frame = cv2.addWeighted(frame_with_lane_detection, 0.5, image, 0.5, 0)
 
         # Display the combined frame
